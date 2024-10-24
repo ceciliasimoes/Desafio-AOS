@@ -3,7 +3,7 @@ import Sequelize from "sequelize";
 import getUserModel from "./user";
 import getMessageModel from "./message";
 
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+const sequelize = new Sequelize(process.env.DATABASE_URL, { ssl: true });
 
 const models = {
   User: getUserModel(sequelize, Sequelize),
