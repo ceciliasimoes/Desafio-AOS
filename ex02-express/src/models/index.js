@@ -3,7 +3,10 @@ import Sequelize from "sequelize";
 import getUserModel from "./user";
 import getMessageModel from "./message";
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, { ssl: true });
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  ssl: true,
+  dialectModule: require("pg"),
+});
 
 const models = {
   User: getUserModel(sequelize, Sequelize),

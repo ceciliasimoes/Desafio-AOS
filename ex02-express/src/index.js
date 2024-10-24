@@ -66,4 +66,4 @@ const createUsersWithMessages = async () => {
   );
 };
 
-modules.export = app;
+module.exports = app;
