@@ -5,7 +5,7 @@ const router = Router();
 
 const checkJwt = auth({
   audience: process.env.AUDIENCE,
-  issuerBaseURL: process.env.READ_MESSAGES_SCOPE,
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
 });
 
 const checkScopes = requiredScopes(process.env.READ_MESSAGES_SCOPE);
