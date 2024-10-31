@@ -1,9 +1,16 @@
 import { Router } from "express";
-import { v4 as uuidv4 } from "uuid";
+import { auth, requiredScopes } from "express-oauth2-jwt-bearer";
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+const checkJwt = auth({
+  audience: process.env.AUDIENCE,
+  issuerBaseURL: process.env.READ_MESSAGES_SCOPE,
+});
+
+const checkScopes = requiredScopes(process.env.READ_MESSAGES_SCOPE);
+
+router.get("/", checkJwt, checkScopes, async (req, res) => {
   const messages = await req.context.models.Message.findAll();
   return res.send(messages);
 });
