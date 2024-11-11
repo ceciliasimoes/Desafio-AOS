@@ -10,7 +10,7 @@ const checkJwt = auth({
 
 const checkScopes = requiredScopes(process.env.READ_MESSAGES_SCOPE);
 
-router.get("/", checkJwt, checkScopes, async (req, res) => {
+router.get("/", checkScopes, async (req, res) => {
   const messages = await req.context.models.Message.findAll();
   return res.send(messages);
 });

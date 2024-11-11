@@ -1,6 +1,7 @@
 import "dotenv/config";
 import cors from "cors";
 import express from "express";
+import { auth } from "express-oauth2-jwt-bearer";
 
 import models, { sequelize } from "./models";
 import routes from "./routes";
@@ -17,6 +18,12 @@ app.use(async (req, res, next) => {
   };
   next();
 });
+
+const checkJwt = auth({
+  audience: process.env.AUDIENCE,
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
+});
+app.use(checkJwt);
 
 app.use("/session", routes.session);
 app.use("/users", routes.user);
