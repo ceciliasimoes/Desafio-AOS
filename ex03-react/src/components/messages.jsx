@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 
 export const Messages = () => {
-  const apiUrl = process.env.REACT_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
   const {
     isAuthenticated,
     isLoading,
