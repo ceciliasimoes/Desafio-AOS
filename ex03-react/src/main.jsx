@@ -8,12 +8,12 @@ import App from "./App.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Auth0Provider
-      domain="marciobueno1.auth0.com"
-      clientId="IhFWWHBvCDIox27Def0vjSt74lhCM9dj"
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}
-      audience="https://aosexpress20242-23o7ept3.b4a.run/"
+      audience={process.env.REACT_APP_AUTH0_AUDIENCE}
     >
       <App />
     </Auth0Provider>

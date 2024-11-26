@@ -20,8 +20,9 @@ app.use(async (req, res, next) => {
 });
 
 const checkJwt = auth({
-  audience: process.env.AUDIENCE,
-  issuerBaseURL: process.env.ISSUER_BASE_URL,
+  audience: process.env.AUDIENCE, 
+  issuerBaseURL: process.env.ISSUER_BASE_URL, 
+  tokenSigningAlg: process.env.TOKEN_ALG, 
 });
 app.use(checkJwt);
 

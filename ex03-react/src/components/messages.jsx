@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 
 export const Messages = () => {
+  const apiUrl = process.env.REACT_API_URL;
   const {
     isAuthenticated,
     isLoading,
@@ -31,7 +32,7 @@ export const Messages = () => {
   const checkMessages = async () => {
     const token = await getAccessToken();
     console.log("token", token);
-    const response = await fetch("http://localhost:3000/messages", {
+    const response = await fetch(`${apiUrl}/messages`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

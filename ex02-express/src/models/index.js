@@ -3,9 +3,18 @@ import Sequelize from "sequelize";
 import getUserModel from "./user";
 import getMessageModel from "./message";
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  ssl: true,
-  dialectModule: require("pg"),
+const sequelize = new Sequelize({
+  dialect: "postgres",
+  host: process.env.DB_HOST,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  dialectOptions: {
+    ssl: {
+      require: true, 
+      rejectUnauthorized: false, 
+    },
+  },
 });
 
 const models = {
